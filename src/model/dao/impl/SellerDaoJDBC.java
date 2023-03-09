@@ -1,12 +1,10 @@
 package model.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import db.DB;
@@ -14,7 +12,6 @@ import db.DbException;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
-import util.ConvertDate;
 
 public class SellerDaoJDBC implements SellerDao {
 	
@@ -65,8 +62,6 @@ public class SellerDaoJDBC implements SellerDao {
 				obj.setName(rs.getString("Name"));
 				obj.setEmail(rs.getString("Email"));
 				obj.setBaseSalary(rs.getDouble("BaseSalary"));
-				
-				Date date = rs.getDate("BirthDate");
 				obj.setBirthDate(rs.getObject("BirthDate", LocalDate.class));
 				
 				obj.setDepartment(dep);
